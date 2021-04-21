@@ -1,12 +1,17 @@
-import { Tabs, Tab } from 'react-bootstrap'
-import dBank from '../abis/dBank.json'
-import React, { Component } from 'react'
-import Token from '../abis/Token.json'
-import dbank from '../dbank.png'
-import Web3 from 'web3'
-import './App.css'
+import { Tabs, Tab } from 'react-bootstrap';
+import dBank from '../abis/dBank.json';
+import React, { Component } from 'react';
+import Token from '../abis/Token.json';
 
-//h0m3w0rk - add new tab to check accrued interest
+import Web3 from 'web3';
+import Navbar from './Navbar';
+import Header from './Header';
+import './App.css';
+import Deposit from './Deposit';
+import Withdraw from './Withdraw';
+import AccountDetails from './AccountDetails';
+import BankDetails from './BankDetails';
+
 
 class App extends Component {
   
@@ -51,18 +56,14 @@ class App extends Component {
         const tokenBalance = await token.methods
           .balanceOf(this.state.account)
           .call();
-        
-        // const dAmount = await dBank.methods.etherBalanceOf[this.state.account].call();
-        // this.setState({
-        //   dAmount: web3.utils.fromWei(dAmount.toString())
-        // })
+       
         const totalSupply = await token.methods.totalSupply().call();
         
         this.setState({
           token: token,
           dbank: dbank,
           dBankAddress: dBankAddress,
-          tokenBalace: web3.utils.fromWei(tokenBalance),
+          tokenBalance: web3.utils.fromWei(tokenBalance),
           totalSupply: web3.utils.fromWei(totalSupply),
           dBankTotalDepositedAmount: web3.utils.fromWei(dBankTotalDepositedAmount)
         })
@@ -74,49 +75,9 @@ class App extends Component {
       window.alert('Please install Metamask')
     }
 
-    //assign to values to variables: web3, netId, accounts
-
-    //check if account is detected, then load balance&setStates, elsepush alert
-
-    //in try block load contracts
-
-    //if MetaMask not exists push alert
   }
 
-  async deposit(amount) {
-    const web3 = new Web3(window.ethereum);
-    if (this.state.dbank !== 'undefined') {
-      try {
-        await this.state.dbank.methods
-          .deposit()
-          .send({ value: amount.toString(), from: this.state.account });
-        
-        
-        // const dAmount = dbank.etherBalanceOf().call();
-        this.setState({
-          dAmount: web3.utils.fromWei(amount.toString())
-        })
-      } catch (e) {
-        console.log('Error, deposit: ', e)
-      }
-    }
-  }
-
-  async withdraw(e) {
-    e.preventDefault()
-    if (this.state.dbank !== 'undefined') {
-      try {
-        await this.state.dbank.methods
-          .withdraw()
-          .send({ from: this.state.account })
-      } catch (e) {
-        console.log('Error, withdraw: ', e)
-      }
-    }
-    //prevent button from default click
-    //check if this.state.dbank is ok
-    //in try block call dBank withdraw();
-  }
+  
 
   constructor(props) {
     super(props)
@@ -131,7 +92,7 @@ class App extends Component {
       balance: 0,
       dBankAddress: null,
       dBankTotalDepositedAmount: 0,
-      tokenBalace: 0,
+      tokenBalance: 0,
       
       dAmount: 0
     }
@@ -140,102 +101,30 @@ class App extends Component {
   render() {
     return (
       <div className="text-monospace">
-        <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-          <a
-            className="navbar-brand col-sm-3 col-md-2 mr-0"
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src={dbank} className="App-logo" alt="logo" height="32" />
-            <b>dBank</b>
-          </a>
-        </nav>
+        
+        <Navbar/>
         <div className="container-fluid mt-5 text-center">
+          <br/>
+          <Header account = { this.state.account }/>
           <br></br>
-          <h1>Welocome to the Decentralized Bank</h1>
-          <h2>{this.state.account}</h2>
-          <br></br>
+          
           <div className="row">
             <main role="main" className="col-lg-12 d-flex text-center">
               <div className="content mr-auto ml-auto">
                 <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
                   <Tab eventKey="deposit" title="Deposit">
-                    <div>
-                      <br />
-                      How much you want to deposit?
-                      <br />
-                      (min. amount is 0.01 ETH)
-                      <br />
-                      (1 deposit is possible at a time)
-                      <br />
-                      <form
-                        onSubmit={(e) => {
-                          e.preventDefault();
-                          
-                          let amount = this.depositAmount.value;
-                          
-                          amount = amount * 10 ** 18 //convert to Wei
-                          this.deposit(amount)
-                          
-                        }}
-                      >
-                        <div className="form-group mr-sm-2">
-                          <br />
-                          <input
-                            id="depositAmount"
-                            step="0.01"
-                            type="number"
-                            className="form-control form-control-md"
-                            placeholder="amount..."
-                            required
-                            ref={(input) => {
-                              this.depositAmount = input
-                            }}
-                          />
-                        </div>
-                        <button type="submit" className="btn btn-primary">
-                          Deposit
-                        </button>
-                      </form>
-                    </div>
+                    <Deposit dbank = {this.state.dbank} account={this.state.account}/>
                   </Tab>
+                  
                   <Tab eventKey="withdraw" title="Withdraw">
-                    <br />
-                    Do you want to withdraw + take interest?
-                    <br />
-                    <br />
-                    <div>
-                      <button
-                        type="submit"
-                        className="btn btn-primary"
-                        onClick={(e) => {
-                          this.withdraw(e)
-                        }}
-                      >
-                        Withdraw
-                      </button>
-                    </div>
+                    <Withdraw dbank={this.state.dbank} account={this.state.account}/>
                   </Tab>
                   <Tab eventKey="accountDetails" title="Account Details">
-                    <br />
-                    <div>Deposited ETH : {this.state.dAmount}</div>
-                    <br />
-                    <br />
-                    DBC Tokens: {this.state.tokenBalace} DBC
+                    <AccountDetails dAmount= {this.state.dAmount} tokenBalance={this.state.tokenBalance}/>
                   </Tab>
 
                   <Tab eventKey="bankDetails" title="Bank Details">
-                    <br />
-                    <div>Bank Name: {this.state.dBankName}</div>
-                    <br/>
-                    <div>Bank Address: {this.state.dBankAddress}</div>
-                    <br />
-                    <div>Token Name: {this.state.tokenName}</div>
-                    <br />
-                    <div>Bank ETH Balance: {this.state.dBankTotalDepositedAmount}</div>
-                    <br/>
-                    <div>Total DBC Token Supply: {this.state.totalSupply}</div>
+                    <BankDetails dBankName={this.state.dBankName} dBankAddress ={this.state.dBankAddress} tokenName ={this.state.tokenName} dBankTotalDepositedAmount ={this.state.dBankTotalDepositedAmount} totalSupply ={this.state.totalSupply}/>
                   </Tab>
                 </Tabs>
               </div>
@@ -247,4 +136,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default App;
