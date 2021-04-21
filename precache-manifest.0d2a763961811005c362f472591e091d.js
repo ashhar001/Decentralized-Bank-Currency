@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "41cc2950943c5bcd4a9cc41c9b8ad322",
+    "revision": "7d07fbe556c1c9c33ac8c9acea00f843",
     "url": "/Decentralized-Bank-Currency/index.html"
   },
   {
