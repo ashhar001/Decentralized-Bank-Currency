@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Decentralized-Bank-Currency/precache-manifest.0d2a763961811005c362f472591e091d.js"
+  "/Decentralized-Bank-Currency/precache-manifest.ebce830af08292fb5b7a46fdeda1fc49.js"
 );
 
 self.addEventListener('message', (event) => {
