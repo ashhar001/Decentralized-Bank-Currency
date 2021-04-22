@@ -1,26 +1,26 @@
 {
   "files": {
     "main.css": "/Decentralized-Bank-Currency/static/css/main.d850c1a7.chunk.css",
-    "main.js": "/Decentralized-Bank-Currency/static/js/main.4e90a793.chunk.js",
-    "main.js.map": "/Decentralized-Bank-Currency/static/js/main.4e90a793.chunk.js.map",
+    "main.js": "/Decentralized-Bank-Currency/static/js/main.80bc07a8.chunk.js",
+    "main.js.map": "/Decentralized-Bank-Currency/static/js/main.80bc07a8.chunk.js.map",
     "runtime-main.js": "/Decentralized-Bank-Currency/static/js/runtime-main.4dbbff00.js",
     "runtime-main.js.map": "/Decentralized-Bank-Currency/static/js/runtime-main.4dbbff00.js.map",
     "static/css/2.963765e0.chunk.css": "/Decentralized-Bank-Currency/static/css/2.963765e0.chunk.css",
-    "static/js/2.918fa911.chunk.js": "/Decentralized-Bank-Currency/static/js/2.918fa911.chunk.js",
-    "static/js/2.918fa911.chunk.js.map": "/Decentralized-Bank-Currency/static/js/2.918fa911.chunk.js.map",
+    "static/js/2.a9630f6f.chunk.js": "/Decentralized-Bank-Currency/static/js/2.a9630f6f.chunk.js",
+    "static/js/2.a9630f6f.chunk.js.map": "/Decentralized-Bank-Currency/static/js/2.a9630f6f.chunk.js.map",
     "index.html": "/Decentralized-Bank-Currency/index.html",
-    "precache-manifest.ebce830af08292fb5b7a46fdeda1fc49.js": "/Decentralized-Bank-Currency/precache-manifest.ebce830af08292fb5b7a46fdeda1fc49.js",
+    "precache-manifest.d76b3b55580d724f86197538ba36587d.js": "/Decentralized-Bank-Currency/precache-manifest.d76b3b55580d724f86197538ba36587d.js",
     "service-worker.js": "/Decentralized-Bank-Currency/service-worker.js",
     "static/css/2.963765e0.chunk.css.map": "/Decentralized-Bank-Currency/static/css/2.963765e0.chunk.css.map",
     "static/css/main.d850c1a7.chunk.css.map": "/Decentralized-Bank-Currency/static/css/main.d850c1a7.chunk.css.map",
-    "static/js/2.918fa911.chunk.js.LICENSE.txt": "/Decentralized-Bank-Currency/static/js/2.918fa911.chunk.js.LICENSE.txt",
+    "static/js/2.a9630f6f.chunk.js.LICENSE.txt": "/Decentralized-Bank-Currency/static/js/2.a9630f6f.chunk.js.LICENSE.txt",
     "static/media/dbank.png": "/Decentralized-Bank-Currency/static/media/dbank.adca41d3.png"
   },
   "entrypoints": [
     "static/js/runtime-main.4dbbff00.js",
     "static/css/2.963765e0.chunk.css",
-    "static/js/2.918fa911.chunk.js",
+    "static/js/2.a9630f6f.chunk.js",
     "static/css/main.d850c1a7.chunk.css",
-    "static/js/main.4e90a793.chunk.js"
+    "static/js/main.80bc07a8.chunk.js"
   ]
 }
